@@ -2,7 +2,6 @@ const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const path = require("path");
 
-// Load protos
 const productPackageDef = protoLoader.loadSync(
   path.join(__dirname, "../product/product.proto")
 );
@@ -15,7 +14,6 @@ const orderPackageDef = protoLoader.loadSync(
 const orderGrpcObj = grpc.loadPackageDefinition(orderPackageDef);
 const orderPackage = orderGrpcObj.order;
 
-// gRPC client for product service
 const productClient = new productPackage.ProductService(
   "localhost:50051",
   grpc.credentials.createInsecure()
